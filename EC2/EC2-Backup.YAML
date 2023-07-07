@@ -26,17 +26,8 @@ Outputs:
 =======
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-  MyEC2Instance:
-    Type: AWS::EC2::Instance
-    Properties:
-      InstanceType: t2.micro
-      ImageId: ami-12345678  # Substitua pelo ID da AMI desejada
-      KeyName: MyKeyPair
-      UserData: !Base64 |
-        #!/bin/bash
-        echo "Hello, World!"
 
-  MyBackupSelection:
+  PlanodeBackup:
     Type: AWS::Backup::BackupSelection
     Properties:
       BackupPlanId: <BackupPlanId>  # Substitua pelo ID do plano de backup
