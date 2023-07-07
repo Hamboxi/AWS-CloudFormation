@@ -89,7 +89,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Criação de primeira VM teste
 Metadata: 
 
-Parameters:
+Parameters: #Novas implementações
 
 Mappings: 
   TiposIntancias:
