@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
 
@@ -22,3 +23,38 @@ Resources:
 Outputs:
   RestoredInstanceId:
     Value: !Ref MyEC2Instance
+=======
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-12345678  # Substitua pelo ID da AMI desejada
+      KeyName: MyKeyPair
+      UserData: !Base64 |
+        #!/bin/bash
+        echo "Hello, World!"
+
+  MyBackupSelection:
+    Type: AWS::Backup::BackupSelection
+    Properties:
+      BackupPlanId: <BackupPlanId>  # Substitua pelo ID do plano de backup
+      BackupSelection:
+        SelectionName: MyBackupSelection
+        IamRoleArn: <IAMRoleArn>  # Substitua pelo ARN da função IAM com permissões do AWS Backup
+        Resources:
+          - !Sub "arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${MyEC2Instance}"
+
+  MyRestoreJob:
+    Type: AWS::Backup::RestoreJob
+    Properties:
+      RecoveryPointArn: <RecoveryPointArn>  # Substitua pelo ARN do ponto de recuperação do AWS Backup
+      Metadata:
+        InstanceId: !Ref MyEC2Instance
+      IamRoleArn: <IAMRoleArn>  # Substitua pelo ARN da função IAM com permissões do AWS Backup
+
+Outputs:
+  RestoredInstanceId:
+    Value: !Ref MyEC2Instance
+>>>>>>> 0e9c45b (Meu primeiro commit)
