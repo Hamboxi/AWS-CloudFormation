@@ -1,6 +1,7 @@
-<<<<<<< HEAD
-AWSTemplateFormatVersion: '2010-09-09'
-Description: Criacao de primeira VM teste
+AWSTemplateFormatVersion: 2010-09-09
+Description: Criação de primeira VM teste
+
+Parameters: #Novas implementações
 
 Mappings:
   TiposImagens:
@@ -70,65 +71,4 @@ Resources:
         - Key: Tipo
           Value: Web
 
-  MyBackupSelection:
-    Type: AWS::Backup::BackupSelection
-    Properties:
-      BackupPlanId: e0d4564a-1841-474e-9b6a-ac23bd7cf58a
-      BackupSelection:
-        IamRoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup
-        SelectionName: MyBackupSelection
-        Resources:
-          - !Sub arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${InstanciaEC2}
-
 Outputs:
-  InstanceId:
-    Description: ID da instancia EC2 criada
-    Value: !Ref InstanciaEC2
-=======
-AWSTemplateFormatVersion: 2010-09-09
-Description: Criação de primeira VM teste
-Metadata: 
-
-Parameters: #Novas implementações
-
-Mappings: 
-  TiposIntancias:
-    us-east-2:
-      t2.micro: "ami-06b09bfacae1453cb"
-Conditions: 
-
-Resources: 
-  InstanciaEC2:
-    Type: AWS::EC2::Instance
-    Properties:
-      KeyName: VWBRANTESTE01
-      DisableApiTermination: false #Define se o recurso pode ser excluído manualmente
-      ImageId: FindInMap [TiposIntancias, !Ref AWS::Region, t2.micro]
-      InstanceType: FindInMap [TiposIntancias, !Ref AWS::Region, t2.micro]
-      Monitoring: false
-      SecurityGroupIds:
-        - sg
-      #UserData: !Base64 |
-        #!/bin/bash -ex
-        # put your script here
-      Tags:
-        - Key: Função
-          Value: Produção
-  
-  sg:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupName: WEB01
-      GroupDescription: Grupo de segurança para máquinas web extranet
-      VpcId: vpc-0c3a76d28ef14c101
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: -1
-          ToPort: 443
-          CidrIp: 0.0.0.0/0
-      Tags:
-        - Key: Tipo
-          Value: Web
-
-Outputs:
->>>>>>> 0e9c45b (Meu primeiro commit)
