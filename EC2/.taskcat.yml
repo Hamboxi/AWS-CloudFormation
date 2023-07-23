@@ -1,0 +1,9 @@
+project:
+  name: ec2-01-01
+  regions:
+    - us-east-2
+tests:
+  default:
+    template: ./EC2.YAML
+    #parameters:
+      

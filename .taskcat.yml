@@ -1,0 +1,18 @@
+project:
+  name: backupplan-01-01
+  regions:
+    - us-east-2
+tests:
+  default:
+    template: ./BackupPlan.YAML
+    parameters:
+      VaultName: PROD01
+      NewVaultName: Sim
+      BackupPlanName: DIARIO
+      CronMinute: "0"
+      CronHour: "0"
+      CronDay: "?"
+      CronMonth: "*"
+      CronDayOfWeek: "*"
+      CronYear: "*"
+      DiaRetencao: "30"
