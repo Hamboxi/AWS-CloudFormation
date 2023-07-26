@@ -1,0 +1,24 @@
+-----------------------------------------------------------------------------
+Region: us-east-2
+StackName: tCaT-backupplan-01-01-default-330c48b6a4ab43bebf99360829482c3b
+*****************************************************************************
+ResourceStatusReason:  
+Stack launch was successful
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId                                               ResourceStatusReason
+--------------------------------  ------------------  --------------------------  --------------------------------------------------------------  ---------------------------
+2023-07-13 14:40:08.265000+00:00  CREATE_COMPLETE     AWS::CloudFormation::Stack  tCaT-backupplan-01-01-default-330c48b6a4ab43bebf99360829482c3b
+2023-07-13 14:40:06.921000+00:00  CREATE_COMPLETE     AWS::Backup::BackupPlan     BackupPlan1
+2023-07-13 14:40:06.622000+00:00  CREATE_IN_PROGRESS  AWS::Backup::BackupPlan     BackupPlan1                                                     Resource creation Initiated
+2023-07-13 14:40:05.077000+00:00  CREATE_IN_PROGRESS  AWS::Backup::BackupPlan     BackupPlan1
+2023-07-13 14:40:03.250000+00:00  CREATE_COMPLETE     AWS::Backup::BackupVault    BackupVault
+2023-07-13 14:40:02.902000+00:00  CREATE_IN_PROGRESS  AWS::Backup::BackupVault    BackupVault                                                     Resource creation Initiated
+2023-07-13 14:40:01.055000+00:00  CREATE_IN_PROGRESS  AWS::Backup::BackupVault    BackupVault
+2023-07-13 14:39:58.018000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-backupplan-01-01-default-330c48b6a4ab43bebf99360829482c3b  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Thursday, 13. July 2023 11:41AM
+-----------------------------------------------------------------------------
+

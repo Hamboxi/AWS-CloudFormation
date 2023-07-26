@@ -1,0 +1,36 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Simple budget example"
+Parameters:
+  Email:
+    Type: String
+    Default: email@example.com
+    Description: Please enter the email address to which budget notifications should be addressed.
+Resources:
+  BudgetExample:
+    Type: "AWS::Budgets::Budget"
+    Properties:
+      Budget:
+        BudgetLimit:
+          Amount: 10
+          Unit: USD
+        TimeUnit: MONTHLY
+        BudgetType: COST
+      NotificationsWithSubscribers:
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 99
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: !Ref Email
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+          Subscribers:
+          - SubscriptionType: EMAIL
+            Address: !Ref Email
+Outputs:
+  BudgetId:
+    Value: !Ref BudgetExample

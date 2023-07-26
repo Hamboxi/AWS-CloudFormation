@@ -1,0 +1,85 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Criacao de primeira VM teste
+
+Mappings:
+  TiposImagens:
+    us-east-1:
+      t2micro: ami-06b09bfacae1453cb
+    us-east-2:
+      t2micro: ami-03f38e546e3dc59e1
+
+  TiposInstancias:
+    us-east-1: 
+      a: t3.micro
+    us-east-2: 
+      a: t2.micro
+
+Resources: 
+  InstanciaEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: WEBvm
+      DisableApiTermination: false
+      ImageId: !FindInMap [TiposImagens, !Ref AWS::Region, t2micro]
+      InstanceType: !FindInMap [TiposInstancias, !Ref AWS::Region, a]
+      Monitoring: false
+      SecurityGroupIds:
+        - !Ref sg
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -ex
+
+          # Verifica se o script est? sendo executado como root
+          if [[ $EUID -ne 0 ]]; then
+            echo "Este script deve ser executado como root."
+            exit 1
+          fi
+
+          # Verifica se o pacote "telnet" j? est? instalado
+          if ! command -v telnet &> /dev/null; then
+            # Executa o comando yum para instalar o pacote
+            yum install -y telnet
+            # Verifica se a instala??o foi bem-sucedida
+            if [ $? -eq 0 ]; then
+              echo "O pacote 'telnet' foi instalado com sucesso."
+            else
+              echo "Ocorreu um erro ao instalar o pacote 'telnet'."
+            fi
+          else
+            echo "O pacote 'telnet' j? est? instalado."
+          fi
+      Tags:
+        - Key: Funcao
+          Value: Producao
+        - Key: Name
+          Value: VWBRANTESTE01
+
+  sg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: WEB01
+      GroupDescription: Grupo de seguranca para maquinas web extranet
+      VpcId: vpc-0c3a76d28ef14c101
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Tipo
+          Value: Web
+
+  MyBackupSelection:
+    Type: AWS::Backup::BackupSelection
+    Properties:
+      BackupPlanId: e0d4564a-1841-474e-9b6a-ac23bd7cf58a
+      BackupSelection:
+        IamRoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup
+        SelectionName: MyBackupSelection
+        Resources:
+          - !Sub arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${InstanciaEC2}
+
+Outputs:
+  InstanceId:
+    Description: ID da instancia EC2 criada
+    Value: !Ref InstanciaEC2

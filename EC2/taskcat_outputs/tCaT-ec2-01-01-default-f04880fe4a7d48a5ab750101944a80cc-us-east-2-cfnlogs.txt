@@ -1,0 +1,24 @@
+-----------------------------------------------------------------------------
+Region: us-east-2
+StackName: tCaT-ec2-01-01-default-f04880fe4a7d48a5ab750101944a80cc
+*****************************************************************************
+ResourceStatusReason:  
+Stack launch was successful
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId                                        ResourceStatusReason
+--------------------------------  ------------------  --------------------------  -------------------------------------------------------  ---------------------------
+2023-07-10 22:31:58.205000+00:00  CREATE_COMPLETE     AWS::CloudFormation::Stack  tCaT-ec2-01-01-default-f04880fe4a7d48a5ab750101944a80cc
+2023-07-10 22:31:57.180000+00:00  CREATE_COMPLETE     AWS::EC2::Instance          InstanciaEC2
+2023-07-10 22:31:25.792000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Instance          InstanciaEC2                                             Resource creation Initiated
+2023-07-10 22:31:24.312000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Instance          InstanciaEC2
+2023-07-10 22:31:23.148000+00:00  CREATE_COMPLETE     AWS::EC2::SecurityGroup     sg
+2023-07-10 22:31:22.422000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup     sg                                                       Resource creation Initiated
+2023-07-10 22:31:17.424000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup     sg
+2023-07-10 22:31:14.449000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-ec2-01-01-default-f04880fe4a7d48a5ab750101944a80cc  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Monday, 10. July 2023 07:32PM
+-----------------------------------------------------------------------------
+

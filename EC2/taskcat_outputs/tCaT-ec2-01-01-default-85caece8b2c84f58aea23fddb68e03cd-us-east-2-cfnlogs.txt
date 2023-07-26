@@ -1,0 +1,26 @@
+-----------------------------------------------------------------------------
+Region: us-east-2
+StackName: tCaT-ec2-01-01-default-85caece8b2c84f58aea23fddb68e03cd
+*****************************************************************************
+ResourceStatusReason:  
+The following resource(s) failed to create: [MyBackupSelection].
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                  LogicalResourceId                                        ResourceStatusReason
+--------------------------------  ------------------  ----------------------------  -------------------------------------------------------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2023-07-11 21:41:09.657000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack    tCaT-ec2-01-01-default-85caece8b2c84f58aea23fddb68e03cd  The following resource(s) failed to create: [MyBackupSelection].
+2023-07-11 21:41:09.176000+00:00  CREATE_FAILED       AWS::Backup::BackupSelection  MyBackupSelection                                        Resource handler returned message: "User: arn:aws:iam::144471715188:user/Flavio is not authorized to perform: iam:PassRole on resource: arn:aws:iam::144471715188:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup because no identity-based policy allows the iam:PassRole action (Service: Backup, Status Code: 403, Request ID: 55a0f6ea-f461-4423-87fa-f5ea49be6e60)" (RequestToken: fa9d4e19-8fc9-3f6b-6461-a926255b4279, HandlerErrorCode: GeneralServiceException)
+2023-07-11 21:41:08.154000+00:00  CREATE_IN_PROGRESS  AWS::Backup::BackupSelection  MyBackupSelection
+2023-07-11 21:41:06.996000+00:00  CREATE_COMPLETE     AWS::EC2::Instance            InstanciaEC2
+2023-07-11 21:40:35.535000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Instance            InstanciaEC2                                             Resource creation Initiated
+2023-07-11 21:40:33.417000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Instance            InstanciaEC2
+2023-07-11 21:40:32.398000+00:00  CREATE_COMPLETE     AWS::EC2::SecurityGroup       sg
+2023-07-11 21:40:31.593000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup       sg                                                       Resource creation Initiated
+2023-07-11 21:40:26.590000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup       sg
+2023-07-11 21:40:23.930000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack    tCaT-ec2-01-01-default-85caece8b2c84f58aea23fddb68e03cd  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Tuesday, 11. July 2023 06:41PM
+-----------------------------------------------------------------------------
+
