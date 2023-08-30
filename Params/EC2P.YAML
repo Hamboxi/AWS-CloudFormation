@@ -1,0 +1,97 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: ---
+Metadata: 
+
+Parameters: 
+  InstanceType:
+    Type: String
+    Description: Tipo da instância EC2 (ex: t2.micro, m5.large, etc.)
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - m5.large
+      - c5.xlarge
+      # Adicione outros tipos de instância permitidos aqui
+
+  KeyPairName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Nome do par de chaves EC2 para acesso SSH
+    ConstraintDescription: Deve ser um par de chaves EC2 válido
+
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: ID do grupo de segurança EC2
+    ConstraintDescription: Deve ser um ID de grupo de segurança EC2 válido
+
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Description: ID da sub-rede EC2 onde a instância será lançada
+    ConstraintDescription: Deve ser um ID de sub-rede EC2 válido
+
+  Tags:
+    Type: List<AWS::EC2::Tag>
+    Description: Tags a serem atribuídas à instância EC2
+    Default: []
+    MaxLength: 10
+    # Adicione outras restrições de validação, se necessário
+
+  Environment:
+    Type: String
+    Description: Ambiente de desenvolvimento (ex: dev, staging, etc.)
+    Default: dev
+    AllowedValues:
+      - dev
+      - staging
+      - production
+      # Adicione outros ambientes permitidos aqui
+
+  DatabaseName:
+    Type: String
+    Description: Nome do banco de dados
+    ConstraintDescription: Deve ser um nome de banco de dados válido
+
+  DatabaseUsername:
+    Type: String
+    Description: Nome de usuário do banco de dados
+    ConstraintDescription: Deve ser um nome de usuário válido
+
+  DatabasePassword:
+    Type: String
+    Description: Senha do banco de dados
+    ConstraintDescription: Deve ser uma senha válida
+    MinLength: 8
+    NoEcho: true
+    # Adicione outras restrições de validação, se necessário
+
+  S3BucketName:
+    Type: String
+    Description: Nome do bucket do Amazon S3
+    ConstraintDescription: Deve ser um nome de bucket válido
+
+  LambdaFunctionName:
+    Type: String
+    Description: Nome da função AWS Lambda
+    ConstraintDescription: Deve ser um nome de função válido
+
+  QueueName:
+    Type: String
+    Description: Nome da fila do Amazon SQS
+    ConstraintDescription: Deve ser um nome de fila válido
+
+  TopicName:
+    Type: String
+    Description: Nome do tópico do Amazon SNS
+    ConstraintDescription: Deve ser um nome de tópico válido
+
+  imageEC2:
+    Description: 
+    Type: AWS::EC2::Image::Id
+    Default:
+
+Mappings: 
+
+Conditions: 
+
+Resources: 
+
+Outputs:

@@ -1,5 +1,5 @@
 project:
-  name: ec2-01-01
+  name: ec2-01-02
   regions:
     - us-east-2
 tests:
