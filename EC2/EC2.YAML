@@ -3,6 +3,21 @@ Description: Criação de primeira VM teste
 
 Parameters: #Novas implementações
 
+Parameters:
+  vmName:
+    Description: "Nome da VM"
+    Type: String
+
+  vmRegion:
+    Description: "Região da VM"
+    Type: String
+    Default: "us-east-1"
+
+  vmSize:
+    Description: "Tamanho da VM"
+    Type: String
+    Default: "t2micro"
+
 Mappings:
   TiposImagens:
     us-east-1:
@@ -12,18 +27,18 @@ Mappings:
 
   TiposInstancias:
     us-east-1: 
-      a: t3.micro
+      t3micro: t3.micro
     us-east-2: 
-      a: t2.micro
+      t2micro: t2.micro
 
 Resources: 
   InstanciaEC2:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: WEBvm
+      KeyName: !Ref vmName
       DisableApiTermination: false
-      ImageId: !FindInMap [TiposImagens, !Ref AWS::Region, t2micro]
-      InstanceType: !FindInMap [TiposInstancias, !Ref AWS::Region, a]
+      ImageId: !FindInMap [TiposImagens, !Ref vmRegion, !Ref vmSize]
+      InstanceType: !FindInMap [TiposInstancias, !Ref vmRegion, !Ref vmSize]
       Monitoring: false
       SecurityGroupIds:
         - !Ref sg
@@ -71,4 +86,21 @@ Resources:
         - Key: Tipo
           Value: Web
 
+<<<<<<< HEAD
 Outputs:
+=======
+  MyBackupSelection:
+    Type: AWS::Backup::BackupSelection
+    Properties:
+      BackupPlanId: 51b5a424-27fa-4491-b46d-429fa00475aa #ID do backup
+      BackupSelection:
+        IamRoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup
+        SelectionName: MyBackupSelection
+        Resources:
+          - !Sub arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${InstanciaEC2}
+
+Outputs:
+  InstanceId:
+    Description: ID da instancia EC2 criada
+    Value: !Ref InstanciaEC2
+>>>>>>> 0a9e722 (Atualizacao Repo)
